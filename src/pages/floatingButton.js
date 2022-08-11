@@ -1,27 +1,26 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { navigation } from '@react-navigation/native'
-
-import { ShoppingCart } from 'phosphor-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function FloatingButton(navigation) {
+
+export default function FloatingButton() {
+
+    const navigation = useNavigation();
+
     return (
         <View style={style.container}>
 
             <TouchableOpacity
                 style={style.btnFloat}
                 activeOpacity={0.5}
-                onPress={() => navigation.navigate('Cart')}
-            >
+                onPress={() => { console.log('era pra chamar'), navigation.navigate('Cart') }}>
                 <Text style={style.txtFloat}>2 Itens</Text>
-
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={style.btnFloat}
                 activeOpacity={0.5}
-                onPress={() => { }}
             >
                 <Text style={style.txtFloat}>R$ 200,00</Text>
 

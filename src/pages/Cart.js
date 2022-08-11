@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function Cart() {
+export default function Cart({navigation}) {
     return (
         <View style={style.container}>
             <Text>
