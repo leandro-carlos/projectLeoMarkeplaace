@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 import dioLogo from '../assets/dioLogo.png'
@@ -6,13 +6,16 @@ import formatValue from '../utils/formatValue.js'
 
 function Catalog() {
 
-    const [product, setProduct] = useState([{
-        id: '1',
-        tittle: 'Imagem Teste',
-        image_url: './assets',
-        price: 150
-
-    }])
+    const [product, setProduct] = useState([
+        {
+            id: '1',
+            tittle: 'Imagem Teste',
+            image_url: './assets',
+            price: 150
+        },
+        
+        
+    ])
 
     return (
         <View>
