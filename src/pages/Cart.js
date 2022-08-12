@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function Cart({navigation}) {
+export default function Cart({ navigation }) {
     return (
         <View style={style.container}>
-            <Text>
-                Cart
-            </Text>
+            <View style={style.insideContainer}>
+                <Text> Olá </Text>
+            </View>
         </View>
     )
 }
@@ -16,6 +16,12 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+    },
+    insideContainer: {
+        flex: 1,
+        width: '100%',
+        margin: '20%',
+        borderWidth: 3,
+        backgroundColor: 'green'
     }
 })
