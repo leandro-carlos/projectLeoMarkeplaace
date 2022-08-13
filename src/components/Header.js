@@ -18,7 +18,8 @@ const style = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 35
+        backgroundColor: '#313445',
+        paddingVertical: 20
     },
     header: {
         flexDirection: 'row',
