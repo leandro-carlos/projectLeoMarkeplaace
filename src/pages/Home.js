@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import Catalog from './Catalog'
 import FloatingButton from './floatingButton'
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
     return (
         <View style={style.container}>
             <Header />

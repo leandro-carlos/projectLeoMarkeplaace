@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 // Imports
+import { Horse, Heart, Cube } from 'phosphor-react-native';
 
 
 export default function Header() {
@@ -10,6 +11,7 @@ export default function Header() {
             <Text style={style.txtHeader}>
                 MarketPlace do Leozinho
             </Text>
+
         </View>
     )
 }
