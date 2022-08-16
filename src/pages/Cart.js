@@ -65,7 +65,7 @@ export default function Cart({ navigation }) {
                             <View style={{ flex: 1, justifyContent: 'space-between', paddingHorizontal: 5, alignItems: 'center' }}>
 
                                 <TouchableOpacity
-                                    style={{ backgroundColor: 'green' }}
+                                    style={{ borderWidth: 1 }}
                                     onPress={() => { }}
                                 >
                                     <Plus size={24} weight="thin" />
@@ -73,7 +73,7 @@ export default function Cart({ navigation }) {
 
                                 <TouchableOpacity
                                     onPress={() => { }}
-                                    style={{ backgroundColor: 'red' }}>
+                                    style={{ borderWidth: 1 }}>
                                     <Minus size={24} weight="thin" />
                                 </TouchableOpacity>
                             </View>
