@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { Dispatch } from 'redux'
 
 import dioLogo from '../assets/dioLogo.png'
-import formatValue from '../utils/formatValue.js'
+import api from '../service/api'
+// import formatValue from '../utils/formatValue.js'
 
 function Catalog() {
 
-    const [product, setProduct] = useState([
-        {
-            id: '1',
-            tittle: 'Imagem Teste',
-            image_url: './assets',
-            price: 150
-        },
-        
-        
-    ])
+
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        async function loading() {
+            await api.get().then((response) => {
+                console.log(response.data);
+                setProduct(response.data)
+            })
+        }
+        loading()
+    }, [])
 
     return (
         <View>
@@ -25,11 +29,8 @@ function Catalog() {
                 renderItem={({ item }) => (
                     <View style={style.viewRender}>
                         <Text>{item.tittle}</Text>
-                        <Image
-                            source={dioLogo}
-                        />
+                        <Image source={dioLogo} />
                         <Text style={style.txtAssinatura}>Assinatura Trimestral</Text>
-
                         <View style={{ flexDirection: 'row' }}>
                             <Text> R$ {item.price}</Text>
                             <TouchableOpacity><Text>Adicionar</Text></TouchableOpacity>

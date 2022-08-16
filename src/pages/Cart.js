@@ -9,15 +9,7 @@ import { Plus, Minus, ShoppingCartSimple } from 'phosphor-react-native';
 
 export default function Cart({ navigation }) {
 
-    const [product, setProduct] = useState([
-        {
-            id: '1',
-            tittle: 'Imagem Teste',
-            image_url: 'https://fernandopitt.com.br/wp-content/uploads/2020/03/digital-innovation-one-1200x480.jpg',
-            price: 150,
-            quantity: '1'
-        },
-    ]);
+    const [product, setProduct] = useState([]);
 
     const cartSize = useMemo(() => {
         return product.length || 0

@@ -1,0 +1,16 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "tittle": "Assinatura Trimestral",
+            "image_url": "https://fernandopitt.com.br/wp-content/uploads/2020/03/digital-innovation-one-1200x480.jpg",
+            "price": "150"
+        },
+        {
+            "id": "2",
+            "tittle": "Assinatural Anual",
+            "image_url": "https://fernandopitt.com.br/wp-content/uploads/2020/03/digital-innovation-one-1200x480.jpg",
+            "price": "540"
+        }
+    ]
+}
