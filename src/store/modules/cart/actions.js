@@ -5,7 +5,7 @@ export function addToCartRequest(id) {
     }
 }
 
-export function addToCartRequest(product) {
+export function addToCartSucess(product) {
     return {
         type: '@cart/ADD_SUCESS',
         payload: product

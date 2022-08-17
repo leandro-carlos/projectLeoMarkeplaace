@@ -1,6 +1,10 @@
-import { createStore } from 'redux';
-import rootRedux from './modules/rootRedux';
+import { createStore, combineReducers, } from 'redux';
+import userReducer from '../store/modules/cart/reducer'
 
-const store = createStore(rootRedux);
+const combine = combineReducers({
+    produto: userReducer,
+})
+
+const store = createStore(combine);
 
 export default store;

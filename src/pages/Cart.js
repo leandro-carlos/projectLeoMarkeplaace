@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCartRequest, addToCartSucess } from '../store/modules/cart/actions'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
 
 // Imports
@@ -9,6 +11,7 @@ import { Plus, Minus, ShoppingCartSimple } from 'phosphor-react-native';
 
 export default function Cart({ navigation }) {
 
+    const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
 
     const cartSize = useMemo(() => {
@@ -23,7 +26,9 @@ export default function Cart({ navigation }) {
         return cartAmount;
     }, [])
 
-
+    // function handleAddToCard(id) {
+    // }
+    
     return (
         <View style={style.container}>
             <Header />
