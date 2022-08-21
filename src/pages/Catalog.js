@@ -44,8 +44,6 @@ function Catalog() {
     )
 }
 
-export default Catalog;
-
 const style = StyleSheet.create({
     viewRender: {
         backgroundColor: '#888b96',
@@ -61,3 +59,5 @@ const style = StyleSheet.create({
         fontSize: 26,
     }
 })
+
+export default Catalog;
