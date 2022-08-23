@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useMemo, useEffect } from 'react'
+import { connect, useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
 
 // Imports
@@ -8,13 +8,14 @@ import Header from '../components/Header'
 import FloatingButton from './floatingButton'
 import { Plus, Minus, ShoppingCartSimple } from 'phosphor-react-native';
 
-export default function Cart({ navigation }) {
+export function Cart({ navigation, product }) {
 
-    const [product, setProduct] = useState([]);
+    // const [product, setProduct] = useState([]);
 
     const cartSize = useMemo(() => {
         return product.length || 0
     }, [product])
+
 
     const cartTotal = useMemo(() => {
         const cartAmount = product.reduce((acc, product) => {
@@ -26,7 +27,7 @@ export default function Cart({ navigation }) {
 
     // function handleAddToCard(id) {
     // }
-    
+
     return (
         <View style={style.container}>
             <Header />
@@ -123,3 +124,11 @@ const style = StyleSheet.create({
         paddingRight: 10,
     }
 })
+
+const mapStateToProps = ({ produto }) => {
+    return {
+        product: produto.products
+    }
+}
+
+export default connect(mapStateToProps, null)(Cart)

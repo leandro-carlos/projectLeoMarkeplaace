@@ -17,7 +17,6 @@ function Catalog({ setProductRedux, productsList }) {
     }, [])
 
 
-
     return (
         <View>
             <FlatList
@@ -25,7 +24,7 @@ function Catalog({ setProductRedux, productsList }) {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={style.viewRender}>
-                        <Image source={dioLogo} />
+                        <Image source={{uri: item.image_url}} />
                         <Text style={style.txtAssinatura}>{item.tittle}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Text> R$ {item.price}</Text>

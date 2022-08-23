@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import { connect, Connect } from 'react-redux';
 
 
 
-export default function FloatingButton() {
+export function FloatingButton({ productList }) {
 
     const navigation = useNavigation();
 
@@ -15,7 +16,7 @@ export default function FloatingButton() {
                 style={style.btnFloat}
                 activeOpacity={0.5}
                 onPress={() => { console.log('era pra chamar'), navigation.navigate('Cart') }}>
-                <Text style={style.txtFloat}>2 Itens</Text>
+                <Text style={style.txtFloat}>{productList.length} Itens</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -55,3 +56,11 @@ const style = StyleSheet.create({
     }
 
 })
+
+const mapStateToProps = ({ produto }) => {
+    return {
+        productList: produto.products
+    }
+}
+
+export default connect(mapStateToProps, null)(FloatingButton)
