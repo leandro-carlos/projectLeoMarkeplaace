@@ -1,7 +1,7 @@
 import { addToCartSucess, addToCartRequest } from "../actionTypes"
 
 const initialState = {
-    products: [],
+    products: {},
 }
 
 export default function reducerR(state = initialState, action) {
@@ -11,7 +11,7 @@ export default function reducerR(state = initialState, action) {
         case addToCartSucess:
             return {
                 ...state,
-                products: action.payload.products
+                products: action.payload
             }
         default:
             return state

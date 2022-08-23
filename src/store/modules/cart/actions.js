@@ -1,13 +1,15 @@
-export function addToCartRequest(id) {
+import { addToCartRequest, addToCartSucess } from '../actionTypes'
+
+export function addToCart(product) {
     return {
-        type: '@cart/ADD_REQUEST',
-        payload: id
+        type: addToCartSucess,
+        payload: product
     }
 }
 
-export function addToCartSucess(product) {
+export function addToRequest(id) {
     return {
-        type: '@cart/ADD_SUCESS',
-        payload: product
+        type: addToCartRequest,
+        payload: id
     }
 }

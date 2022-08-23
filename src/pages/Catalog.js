@@ -1,42 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import { Dispatch } from 'redux'
-
+import { connect } from 'react-redux'
+import { addToCart } from '../store/modules/cart/actions'
 import dioLogo from '../assets/dioLogo.png'
 import api from '../service/api'
-// import formatValue from '../utils/formatValue.js'
 
-function Catalog() {
-
-
-    const [product, setProduct] = useState([])
+function Catalog({ setProductRedux, productsList }) {
 
     useEffect(() => {
         async function loading() {
             await api.get().then((response) => {
-                console.log(response.data);
-                setProduct(response.data)
+                setProductRedux(response.data)
             })
         }
         loading()
     }, [])
 
+
+
     return (
         <View>
             <FlatList
-                data={product}
+                data={productsList}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={style.viewRender}>
-                        <Text>{item.tittle}</Text>
                         <Image source={dioLogo} />
-                        <Text style={style.txtAssinatura}>Assinatura Trimestral</Text>
+                        <Text style={style.txtAssinatura}>{item.tittle}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Text> R$ {item.price}</Text>
                             <TouchableOpacity><Text>Adicionar</Text></TouchableOpacity>
                         </View>
 
                     </View>
+
                 )
                 }
             />
@@ -60,4 +57,19 @@ const style = StyleSheet.create({
     }
 })
 
-export default Catalog;
+const mapStateToProps = ({ produto }) => {
+    return {
+        productsList: produto.products
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setProductRedux: product => dispatch(addToCart(product))
+    }
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
