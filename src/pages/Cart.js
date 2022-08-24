@@ -16,6 +16,10 @@ export function Cart({ navigation, product }) {
         return product.length || 0
     }, [product])
 
+    useEffect(() => { }, [
+        product
+    ])
+
 
     const cartTotal = useMemo(() => {
         const cartAmount = product.reduce((acc, product) => {
