@@ -3,7 +3,6 @@ import { connect, useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
 import { setCart } from '../store/modules/cart/actions'
 
-
 // Imports
 
 import Header from '../components/Header'
@@ -59,15 +58,13 @@ export function Cart({ navigation, product, setProductRedux }) {
                                 </View>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'space-between', paddingHorizontal: 5, alignItems: 'center' }}>
-
                                 <TouchableOpacity
                                     style={{ borderWidth: 1 }}
                                     onPress={() => {
                                         product[index].quantity += 1
                                         setProductRedux(product)
                                         setRefresh(!refresh)
-                                    }}
-                                >
+                                    }}>
                                     <Plus size={24} weight="thin" />
                                 </TouchableOpacity>
 
@@ -88,6 +85,7 @@ export function Cart({ navigation, product, setProductRedux }) {
                     </View>
                     <Text>R$ {cartTotal}</Text>
                 </View>
+                
             </View>
 
         </View>
