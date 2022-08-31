@@ -1,25 +1,23 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
+import { setCart } from '../store/modules/cart/actions'
+
 
 // Imports
 
 import Header from '../components/Header'
 import FloatingButton from './floatingButton'
 import { Plus, Minus, ShoppingCartSimple } from 'phosphor-react-native';
+import { adicionarMais } from '../store/modules/actionTypes'
 
-export function Cart({ navigation, product }) {
+export function Cart({ navigation, product, setProductRedux }) {
 
-    // const [product, setProduct] = useState([]);
+    const [refresh, setRefresh] = useState(false)
 
     const cartSize = useMemo(() => {
         return product.length || 0
     }, [product])
-
-    useEffect(() => { }, [
-        product
-    ])
-
 
     const cartTotal = useMemo(() => {
         const cartAmount = product.reduce((acc, product) => {
@@ -29,8 +27,6 @@ export function Cart({ navigation, product }) {
         return cartAmount;
     }, [])
 
-    // function handleAddToCard(id) {
-    // }
 
     return (
         <View style={style.container}>
@@ -39,6 +35,7 @@ export function Cart({ navigation, product }) {
 
                 <FlatList
                     data={product}
+                    extraData={refresh}
                     keyExtractor={(item) => item.id}
                     contentContainerStyle={{ paddingBottom: 105, }}
                     ListEmptyComponent={() =>
@@ -48,14 +45,13 @@ export function Cart({ navigation, product }) {
                             }}>
                             <Text>Lista vazia</Text>
                         </View>}
-                    renderItem={({ item }) =>
-
+                    renderItem={({ item, index }) =>
                         <View style={style.box}>
                             <Image
                                 style={{ width: 150, height: 75, justifyContent: 'center', alignItems: 'center', paddingVertical: 5 }}
                                 source={{ uri: item.image_url }} />
                             <View style={style.boxInBox}>
-                                <Text style={{ fontWeight: 'bold', color: 'black', fontSize: 16, paddingBottom: 5 }}>Assinatura Trimestral</Text>
+                                <Text style={{ fontWeight: 'bold', color: 'black', fontSize: 16, paddingBottom: 5 }}>{item.tittle}</Text>
                                 <Text style={{ fontWeight: 'bold', color: 'black', fontSize: 16, paddingBottom: 8 }}>R$ {item.price}</Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Text style={{ fontWeight: 'bold', color: 'red', fontSize: 16, paddingVertical: 2 }}>{item.quantity} X </Text>
@@ -66,7 +62,11 @@ export function Cart({ navigation, product }) {
 
                                 <TouchableOpacity
                                     style={{ borderWidth: 1 }}
-                                    onPress={() => { }}
+                                    onPress={() => {
+                                        product[index].quantity += 1
+                                        setProductRedux(product)
+                                        setRefresh(!refresh)
+                                    }}
                                 >
                                     <Plus size={24} weight="thin" />
                                 </TouchableOpacity>
@@ -93,7 +93,6 @@ export function Cart({ navigation, product }) {
         </View>
     )
 }
-
 
 const style = StyleSheet.create({
     container: {
@@ -135,4 +134,10 @@ const mapStateToProps = ({ produto }) => {
     }
 }
 
-export default connect(mapStateToProps, null)(Cart)
+const mapDispatchToProps = dispatch => {
+    return {
+        setProductRedux: product => dispatch(setCart(product))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

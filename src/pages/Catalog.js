@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { addToCart } from '../store/modules/cart/actions'
+import { setCart } from '../store/modules/cart/actions'
 import dioLogo from '../assets/dioLogo.png'
 import api from '../service/api'
 
@@ -16,7 +16,6 @@ function Catalog({ setProductRedux, productsList }) {
         loading()
     }, [])
 
-
     return (
         <View>
             <FlatList
@@ -24,15 +23,15 @@ function Catalog({ setProductRedux, productsList }) {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={style.viewRender}>
-                        <Image source={{uri: item.image_url}} />
+                        <Image source={dioLogo} />
                         <Text style={style.txtAssinatura}>{item.tittle}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Text> R$ {item.price}</Text>
-                            <TouchableOpacity><Text>Adicionar</Text></TouchableOpacity>
+                            <TouchableOpacity>
+                                <Text>Adicionar</Text>
+                            </TouchableOpacity>
                         </View>
-
                     </View>
-
                 )
                 }
             />
@@ -64,11 +63,8 @@ const mapStateToProps = ({ produto }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setProductRedux: product => dispatch(addToCart(product))
+        setProductRedux: product => dispatch(setCart(product))
     }
 }
-
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

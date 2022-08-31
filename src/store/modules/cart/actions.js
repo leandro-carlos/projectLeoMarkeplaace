@@ -1,15 +1,8 @@
-import { addToCartRequest, addToCartSucess } from '../actionTypes'
+import { setCartSucess } from '../actionTypes'
 
-export function addToCart(product) {
+export function setCart(product) {
     return {
-        type: addToCartSucess,
+        type: setCartSucess,
         payload: product
-    }
-}
-
-export function addToRequest(id) {
-    return {
-        type: addToCartRequest,
-        payload: id
     }
 }
